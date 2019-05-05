@@ -10,6 +10,12 @@ Promise.all([createMario(), loadLevel()]).then(([mario, environment]) => {
       mario.jumpStop();
     }
   });
+  input.addMapping(39, keyState => {
+    mario.walk(keyState);
+  });
+  input.addMapping(37, keyState => {
+    mario.walk(-keyState);
+  });
   input.listenTo(window);
 
   ['mousedown', 'mousemove'].forEach(eventName => {

@@ -37,12 +37,23 @@ function createCollisionLayer(environment) {
 
   const getByIndexOriginal = tileResolver.getByIndex;
 
-  context.strokeStyle = 'blue';
-
   tileResolver.getByIndex = function getByIndexFake(x, y) {
+    context.strokeStyle = 'blue';
     context.beginPath();
     context.rect(x * tileSize, y * tileSize, tileSize, tileSize);
     context.stroke();
+
+    environment.entities.forEach(entity => {
+      context.strokeStyle = 'red';
+      context.beginPath();
+      context.rect(
+        entity.position.x,
+        entity.position.y,
+        entity.size.x,
+        entity.size.y
+      );
+      context.stroke();
+    });
 
     return getByIndexOriginal.call(tileResolver, x, y);
   };

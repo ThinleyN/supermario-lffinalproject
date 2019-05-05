@@ -15,8 +15,9 @@ class TileCollider {
 
     if (match.tile === 'ground') {
       if (entity.velocity.y > 0) {
-        if (entity.position.y > match.ytop) {
-          entity.position.y = match.ytop;
+        if (entity.position.y + entity.size.y > match.ytop) {
+          entity.position.y = match.ytop - entity.size.y;
+          console.log(entity.position.y, match.ytop);
           entity.velocity.y = 0;
         }
       } else if (entity.velocity.y < 0) {
