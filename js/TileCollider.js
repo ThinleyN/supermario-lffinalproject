@@ -4,29 +4,32 @@ class TileCollider {
   }
 
   checkY(entity) {
-    const match = this.tiles.matchByPosition(
+    let matches = this.tiles.matchByRange(
       entity.position.x,
-      entity.position.y
+      entity.position.x + entity.size.x,
+      entity.position.y,
+      entity.position.y + entity.size.y
     );
 
-    if (match.tile !== 'ground') {
-      return;
-    }
+    matches.forEach(match => {
+      if (match.tile !== 'ground') {
+        return;
+      }
 
-    if (match.tile === 'ground') {
-      if (entity.velocity.y > 0) {
-        if (entity.position.y + entity.size.y > match.ytop) {
-          entity.position.y = match.ytop - entity.size.y;
-          console.log(entity.position.y, match.ytop);
-          entity.velocity.y = 0;
-        }
-      } else if (entity.velocity.y < 0) {
-        if (entity.position.y < match.ybottom) {
-          entity.position.y = match.ybottom;
-          entity.velocity.y = 0;
+      if (match.tile === 'ground') {
+        if (entity.velocity.y > 0) {
+          if (entity.position.y + entity.size.y > match.ytop) {
+            entity.position.y = match.ytop - entity.size.y;
+            entity.velocity.y = 0;
+          }
+        } else if (entity.velocity.y < 0) {
+          if (entity.position.y < match.ybottom) {
+            entity.position.y = match.ybottom;
+            entity.velocity.y = 0;
+          }
         }
       }
-    }
+    });
   }
 
   test(entity) {

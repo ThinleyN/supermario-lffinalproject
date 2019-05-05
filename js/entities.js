@@ -10,7 +10,7 @@ function createMario() {
     var upvelo = 1.7;
     var engageTime = 0;
     var dir = 0;
-    var speed = 1;
+    var speed = 2;
 
     mario.draw = function drawMario(context) {
       sprites.draw('idle', context, this.position.x, this.position.y);

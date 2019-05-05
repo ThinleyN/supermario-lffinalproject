@@ -27,7 +27,7 @@ Promise.all([createMario(), loadLevel()]).then(([mario, environment]) => {
     });
   });
 
-  createCollisionLayer(environment);
+  // createCollisionLayer(environment);
   calculateTiles(level1, environment);
 
   environment.entities.add(mario);
