@@ -9,7 +9,7 @@ function createMario() {
     var duration = 0.5;
     var upvelo = 1.7;
     var engageTime = 0;
-    var dir = 0;
+    // var dir = 0;
     var speed = 2;
 
     mario.draw = function drawMario(context) {

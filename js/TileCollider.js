@@ -12,6 +12,7 @@ class TileCollider {
     );
 
     matches.forEach(match => {
+      // console.log(matches);
       if (match.tile !== 'ground') {
         return;
       }
@@ -26,6 +27,39 @@ class TileCollider {
           if (entity.position.y < match.ybottom) {
             entity.position.y = match.ybottom;
             entity.velocity.y = 0;
+          }
+        }
+      }
+      this.checkX(entity);
+    });
+  }
+
+  checkX(entity) {
+    let matches = this.tiles.matchByRange(
+      entity.position.x,
+      entity.position.x + entity.size.x,
+      entity.position.y,
+      entity.position.y + entity.size.y
+    );
+
+    matches.forEach(match => {
+      // console.log(matches);
+      if (match.tile !== 'ground') {
+        return;
+      }
+
+      if (match.tile === 'ground') {
+        if (entity.velocity.x > 0) {
+          console.log(entity.velocity.x);
+          if (entity.position.x + entity.size.x > match.xleft) {
+            entity.position.x = match.xleft - entity.size.x;
+            entity.velocity.x = 0;
+          }
+        } else if (entity.velocity.x < 0) {
+          console.log(entity.velocity.x);
+          if (entity.position.x < match.xright) {
+            entity.position.x = match.xright;
+            entity.velocity.x = 0;
           }
         }
       }

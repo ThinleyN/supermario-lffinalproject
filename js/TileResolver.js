@@ -20,13 +20,18 @@ class TileResolver {
 
   getByIndex(indexX, indexY) {
     let tile = this.matrix.get(indexX, indexY);
+    let xleft = indexX * this.tileSize;
+    let xright = xleft + this.tileSize;
+    // console.log(xright);
     let ytop = indexY * this.tileSize;
     let ybottom = ytop + this.tileSize;
     if (tile) {
       return {
         tile,
         ytop,
-        ybottom
+        ybottom,
+        xleft,
+        xright
       };
     }
   }
