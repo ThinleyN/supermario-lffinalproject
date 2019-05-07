@@ -10,45 +10,60 @@ function drawBackground(background, context, sprites) {
 
 function createBackgroundLayer(background, sprites) {
   const buffer = document.createElement('canvas');
-  buffer.width = 480;
-  buffer.height = 480;
+  buffer.width = 2048;
+  buffer.height = 1000;
 
   background.forEach(background => {
     drawBackground(background, buffer.getContext('2d'), sprites);
   });
 
-  return function drawBackgroundLayer(context) {
-    context.drawImage(buffer, 0, 0);
+  return function drawBackgroundLayer(context, camera) {
+    context.drawImage(buffer, -camera.position.x, -camera.position.y);
   };
 }
 
 function createSpriteLayer(entities) {
-  return function drawSpriteLayer(context) {
+  const spriteBuffer = document.createElement('canvas');
+  spriteBuffer.width = 64;
+  spriteBuffer.height = 64;
+  const spriteBufferContext = spriteBuffer.getContext('2d');
+
+  return function drawSpriteLayer(context, camera) {
     entities.forEach(entity => {
-      entity.draw(context);
+      entity.draw(spriteBufferContext);
+
+      context.drawImage(
+        spriteBuffer,
+        entity.position.x - camera.position.x,
+        entity.position.y - camera.position.y
+      );
     });
   };
 }
 
-function createCollisionLayer(environment) {
+function createCollisionLayer(environment, camera) {
   const tileResolver = environment.tileCollider.tiles;
   const tileSize = tileResolver.tileSize;
-  console.log(tileResolver);
 
   const getByIndexOriginal = tileResolver.getByIndex;
 
   tileResolver.getByIndex = function getByIndexFake(x, y) {
     context.strokeStyle = 'blue';
     context.beginPath();
-    context.rect(x * tileSize, y * tileSize, tileSize, tileSize);
+    context.rect(
+      x * tileSize - camera.position.x,
+      y * tileSize - camera.position.y,
+      tileSize,
+      tileSize
+    );
     context.stroke();
 
     environment.entities.forEach(entity => {
       context.strokeStyle = 'red';
       context.beginPath();
       context.rect(
-        entity.position.x,
-        entity.position.y,
+        entity.position.x - camera.position.x,
+        entity.position.y - camera.position.y,
         entity.size.x,
         entity.size.y
       );

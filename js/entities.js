@@ -5,20 +5,21 @@ function createMario() {
     mario.velocity.set(0, 0);
     mario.size.set(14, 16);
 
-    var gravity = 1;
+    // var gravity = 1;
     var duration = 0.5;
     var upvelo = 1.7;
     var engageTime = 0;
     // var dir = 0;
     var speed = 2;
+    var idle = 1;
 
     mario.draw = function drawMario(context) {
-      sprites.draw('idle', context, this.position.x, this.position.y);
+      sprites.draw('idle', context, 0, 0);
     };
 
     mario.walk = function walkMario(dir) {
-      console.log(dir);
       mario.velocity.x = speed * dir;
+      idle = 0;
     };
 
     mario.jump = function jumpMario() {
@@ -30,15 +31,10 @@ function createMario() {
     };
 
     mario.update = function updateMario() {
-      // console.log(mario.size);
       if (engageTime > 0) {
         mario.velocity.y -= upvelo;
         engageTime -= 1 / 25;
       }
-      // mario.position.x += mario.velocity.x;
-      mario.position.x += mario.velocity.x;
-      mario.position.y += mario.velocity.y;
-      mario.velocity.y += gravity;
     };
 
     return mario;

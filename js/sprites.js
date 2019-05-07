@@ -14,6 +14,9 @@ function loadMario() {
   return loadImage('img/characters.gif').then(image => {
     const sprites = new SpriteSheet(image, 16, 16);
     sprites.define('idle', 277, 44, 12, 16);
+    sprites.define('run1', 290, 44, 12, 16);
+    sprites.define('run2', 303, 44, 12, 16);
+    sprites.define('run3', 315, 44, 12, 16);
     return sprites;
   });
 }
