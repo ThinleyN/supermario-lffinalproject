@@ -1,3 +1,5 @@
+const MAX_LEFT_PIXEL = 400;
+
 class Environment {
   constructor() {
     this.comp = new Compositor();
@@ -17,9 +19,10 @@ class Environment {
 
       console.log(entity.position.x);
 
-      if (entity.position.x - 500 > 1) {
-        camera.position.x =
-          camera.position.x - this.lastPosition + entity.position.x;
+      //Camera Movement
+      if (entity.position.x > MAX_LEFT_PIXEL) {
+        camera.position.x = camera.position.x =
+          entity.position.x - MAX_LEFT_PIXEL;
       }
 
       entity.position.y += entity.velocity.y;
