@@ -17,8 +17,6 @@ class Environment {
       entity.position.x += entity.velocity.x;
       this.tileCollider.checkX(entity);
 
-      console.log(entity.position.x);
-
       //Camera Movement
       if (entity.position.x > MAX_LEFT_PIXEL) {
         camera.position.x = camera.position.x =
