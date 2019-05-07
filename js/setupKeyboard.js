@@ -1,17 +1,17 @@
-function setupKeyboard(entity) {
+function setupKeyboard(mario) {
   const input = new Keyboard();
   input.addMapping(32, keyState => {
     if (keyState) {
-      entity.jump();
+      mario.jump();
     } else {
-      entity.jumpStop();
+      mario.jumpStop();
     }
   });
   input.addMapping(39, keyState => {
-    entity.walk(keyState);
+    mario.walk(keyState);
   });
   input.addMapping(37, keyState => {
-    entity.walk(-keyState);
+    mario.walk(-keyState);
   });
   input.listenTo(window);
 

@@ -1,38 +1,44 @@
 const canvas = document.getElementById('screen');
 const context = canvas.getContext('2d');
 
-Promise.all([createMario(), loadLevel()]).then(([mario, environment]) => {
-  const camera = new Camera();
-  window.camera = camera;
-  ['mousedown', 'mousemove'].forEach(eventName => {
-    canvas.addEventListener(eventName, event => {
-      if (event.buttons === 1) {
-        mario.velocity.set(0, 0);
-        mario.position.set(
-          event.offsetX + camera.position.x,
-          event.offsetY + camera.position.y
-        );
-      }
+Promise.all([createMario(), loadLevel(), createGoomba(), createKoopa()]).then(
+  ([mario, environment, goomba, koopa]) => {
+    const camera = new Camera();
+    window.camera = camera;
+    ['mousedown', 'mousemove'].forEach(eventName => {
+      canvas.addEventListener(eventName, event => {
+        if (event.buttons === 1) {
+          mario.velocity.set(0, 0);
+          mario.position.set(
+            event.offsetX + camera.position.x,
+            event.offsetY + camera.position.y
+          );
+        }
+      });
     });
-  });
 
-  const inputkeyboard = setupKeyboard(mario);
+    const inputkeyboard = setupKeyboard(mario);
 
-  // createCollisionLayer(environment, camera);
-  calculateTiles(level1, environment);
+    // createCollisionLayer(environment, camera);
+    calculateTiles(level1, environment);
 
-  environment.entities.add(mario);
-  const spriteLayer = createSpriteLayer(environment.entities);
+    goomba.position.x = 150;
 
-  environment.comp.layers.push(spriteLayer);
-  console.log(environment.comp);
+    environment.entities.add(goomba);
+    environment.entities.add(koopa);
+    environment.entities.add(mario);
 
-  function update() {
-    environment.comp.draw(context, camera);
+    const spriteLayer = createSpriteLayer(environment.entities);
 
-    environment.update(camera);
+    environment.comp.layers.push(spriteLayer);
 
-    requestAnimationFrame(update);
+    function update() {
+      environment.comp.draw(context, camera);
+
+      environment.update(camera);
+
+      requestAnimationFrame(update);
+    }
+    update();
   }
-  update();
-});
+);

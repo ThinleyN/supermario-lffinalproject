@@ -44,21 +44,20 @@ class TileCollider {
     );
 
     matches.forEach(match => {
-      // if (match.tile !== 'ground') {
-      //   return;
-      // }
-
       if (match.tile === 'surprise' || match.tile === 'ground') {
         if (entity.velocity.x > 0) {
-          // console.log(entity.velocity.x);
           if (entity.position.x + entity.size.x > match.xleft) {
             entity.position.x = match.xleft - entity.size.x;
             entity.velocity.x = 0;
+
+            entity.obstruct('left');
           }
         } else if (entity.velocity.x < 0) {
           if (entity.position.x < match.xright) {
             entity.position.x = match.xright;
             entity.velocity.x = 0;
+
+            entity.obstruct('left');
           }
         }
       }
@@ -66,9 +65,6 @@ class TileCollider {
   }
 
   test(entity) {
-    // this.checkY(entity);
-    // this.checkX(entity);
-
     const match = this.tiles.matchByPosition(
       entity.position.x,
       entity.position.y
