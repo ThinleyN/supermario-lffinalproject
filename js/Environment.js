@@ -6,31 +6,33 @@ class Environment {
     this.entities = new Set();
     this.tiles = new GridMatrix();
     this.gravity = 1;
+    this.entityCollider = new EntityCollider(this.entities);
 
     this.tileCollider = new TileCollider(this.tiles);
   }
 
   update(camera) {
     this.entities.forEach(entity => {
-      // console.log(entity.name);
-      entity.position.x += entity.velocity.x;
-      this.tileCollider.checkX(entity);
+      entity.forEach(element => {
+        element.position.x += element.velocity.x;
+        this.tileCollider.checkX(element);
 
-      //Camera Movement
-      if (entity.name === 'mario') {
-        // console.log(entity.name);
-        if (entity.position.x > MAX_LEFT_PIXEL) {
-          camera.position.x = camera.position.x =
-            entity.position.x - MAX_LEFT_PIXEL;
+        //Camera Movement
+        if (element.name === 'mario') {
+          if (element.position.x > MAX_LEFT_PIXEL) {
+            camera.position.x = camera.position.x =
+              element.position.x - MAX_LEFT_PIXEL;
+          }
+          this.entityCollider.check(element);
         }
-      }
 
-      entity.position.y += entity.velocity.y;
-      this.tileCollider.checkY(entity);
+        element.position.y += element.velocity.y;
+        this.tileCollider.checkY(element);
 
-      entity.velocity.y += this.gravity;
+        element.velocity.y += this.gravity;
 
-      entity.update();
+        element.update();
+      });
     });
   }
 }

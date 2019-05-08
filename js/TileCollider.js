@@ -17,7 +17,15 @@ class TileCollider {
       //   return;
       // }
 
-      if (match.tile === 'ground' || match.tile === 'surprise') {
+      if (
+        match.tile === 'ground' ||
+        match.tile === 'surprise' ||
+        match.tile === 'brick' ||
+        match.tile === 'pipeTopLeft' ||
+        match.tile === 'pipeTopRight' ||
+        match.tile === 'pipeBodyLeft' ||
+        match.tile === 'pipeBodyRight'
+      ) {
         if (entity.velocity.y > 0) {
           if (entity.position.y + entity.size.y > match.ytop) {
             entity.position.y = match.ytop - entity.size.y;
@@ -44,7 +52,15 @@ class TileCollider {
     );
 
     matches.forEach(match => {
-      if (match.tile === 'surprise' || match.tile === 'ground') {
+      if (
+        match.tile === 'surprise' ||
+        match.tile === 'ground' ||
+        match.tile === 'brick' ||
+        match.tile === 'pipeTopLeft' ||
+        match.tile === 'pipeTopRight' ||
+        match.tile === 'pipeBodyLeft' ||
+        match.tile === 'pipeBodyRight'
+      ) {
         if (entity.velocity.x > 0) {
           if (entity.position.x + entity.size.x > match.xleft) {
             entity.position.x = match.xleft - entity.size.x;
@@ -57,7 +73,7 @@ class TileCollider {
             entity.position.x = match.xright;
             entity.velocity.x = 0;
 
-            entity.obstruct('left');
+            entity.obstruct('right');
           }
         }
       }

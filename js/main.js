@@ -8,8 +8,8 @@ Promise.all([createMario(), loadLevel(), createGoomba(), createKoopa()]).then(
     ['mousedown', 'mousemove'].forEach(eventName => {
       canvas.addEventListener(eventName, event => {
         if (event.buttons === 1) {
-          mario.velocity.set(0, 0);
-          mario.position.set(
+          mario[0].velocity.set(0, 0);
+          mario[0].position.set(
             event.offsetX + camera.position.x,
             event.offsetY + camera.position.y
           );
@@ -21,8 +21,6 @@ Promise.all([createMario(), loadLevel(), createGoomba(), createKoopa()]).then(
 
     // createCollisionLayer(environment, camera);
     calculateTiles(level1, environment);
-
-    goomba.position.x = 150;
 
     environment.entities.add(goomba);
     environment.entities.add(koopa);

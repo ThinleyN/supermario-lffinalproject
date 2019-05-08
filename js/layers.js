@@ -11,7 +11,7 @@ function drawBackground(background, context, sprites) {
 function createBackgroundLayer(background, sprites) {
   const buffer = document.createElement('canvas');
   buffer.width = 2048;
-  buffer.height = 1000;
+  buffer.height = 500;
 
   background.forEach(background => {
     drawBackground(background, buffer.getContext('2d'), sprites);
@@ -30,13 +30,15 @@ function createSpriteLayer(entities) {
 
   return function drawSpriteLayer(context, camera) {
     entities.forEach(entity => {
-      entity.draw(spriteBufferContext);
+      entity.forEach(element => {
+        element.draw(spriteBufferContext);
 
-      context.drawImage(
-        spriteBuffer,
-        entity.position.x - camera.position.x,
-        entity.position.y - camera.position.y
-      );
+        context.drawImage(
+          spriteBuffer,
+          element.position.x - camera.position.x,
+          element.position.y - camera.position.y
+        );
+      });
     });
   };
 }
