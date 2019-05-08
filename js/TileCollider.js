@@ -24,7 +24,8 @@ class TileCollider {
         match.tile === 'pipeTopLeft' ||
         match.tile === 'pipeTopRight' ||
         match.tile === 'pipeBodyLeft' ||
-        match.tile === 'pipeBodyRight'
+        match.tile === 'pipeBodyRight' ||
+        match.tile === 'cube'
       ) {
         if (entity.velocity.y > 0) {
           if (entity.position.y + entity.size.y > match.ytop) {
@@ -59,7 +60,8 @@ class TileCollider {
         match.tile === 'pipeTopLeft' ||
         match.tile === 'pipeTopRight' ||
         match.tile === 'pipeBodyLeft' ||
-        match.tile === 'pipeBodyRight'
+        match.tile === 'pipeBodyRight' ||
+        match.tile === 'cube'
       ) {
         if (entity.velocity.x > 0) {
           if (entity.position.x + entity.size.x > match.xleft) {

@@ -11,6 +11,7 @@ function loadBackground() {
     sprites.defineTile('pipeTopRight', 1, 8);
     sprites.defineTile('pipeBodyLeft', 0, 9);
     sprites.defineTile('pipeBodyRight', 1, 9);
+    sprites.defineTile('cube', 0, 1);
     return sprites;
   });
 }
