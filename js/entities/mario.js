@@ -2,18 +2,18 @@ function createMario() {
   return loadMario().then(sprites => {
     const mario = [];
     for (i = 0; i < 1; i++) {
-      mario[i] = new Entity('mario');
-      mario[i].position.set(10, 10);
-      mario[i].velocity.set(0, 0);
-      mario[i].size.set(14, 16);
-      mario[i].jumpReady = false;
-
       var duration = 0.5;
       var upvelo = 1.7;
       var engageTime = 0;
       var speed = 2;
       var animate = 0;
       var index = 0;
+
+      mario[i] = new Entity('mario');
+      mario[i].position.set(30, 10);
+      mario[i].velocity.set(0, 0);
+      mario[i].size.set(14, 16);
+      mario[i].jumpReady = false;
 
       mario[i].draw = function drawMario(context) {
         context.clearRect(0, 0, 64, 64);
@@ -42,7 +42,7 @@ function createMario() {
         }
       };
 
-      mario[i].walk = function walkMario(dir) {
+      mario[i].walk = function walkMario(dir, run) {
         this.velocity.x = speed * dir;
       };
 

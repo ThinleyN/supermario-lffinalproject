@@ -28,7 +28,7 @@ Promise.all([createMario(), loadLevel(), createGoomba(), createKoopa()]).then(
     // createCollisionLayer(environment, camera);
     calculateTiles(level1, environment);
 
-    // environment.entities.add(goomba);
+    environment.entities.add(goomba);
     // environment.entities.add(koopa);
     environment.entities.add(mario);
 

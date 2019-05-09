@@ -17,9 +17,10 @@ class TileCollider {
       // if (match.tile !== 'ground') {
       //   return;
       // }
-      if (match.tile === 'coin') {
-        console.log(match.tile);
-        this.arbitrary.createBlocks(match);
+      if (entity.name === 'mario') {
+        if (match.tile === 'coin') {
+          this.arbitrary.createBlocks(match);
+        }
       }
 
       if (
