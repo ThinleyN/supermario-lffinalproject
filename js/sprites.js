@@ -26,7 +26,8 @@ function loadMario() {
     sprites.define('backrun0', 208, 44, 15, 16);
     sprites.define('backrun1', 192, 44, 15, 16);
     sprites.define('backrun2', 176, 44, 15, 16);
-    sprites.define('goomba', 296, 187, 16, 16);
+    sprites.define('goomba0', 296, 187, 16, 16);
+    sprites.define('goomba1', 315, 187, 16, 16);
     sprites.define('goombadead', 278, 187, 16, 16);
     sprites.define('koopa', 296, 207, 16, 24);
     return sprites;
