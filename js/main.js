@@ -1,6 +1,12 @@
 const canvas = document.getElementById('screen');
 const context = canvas.getContext('2d');
 
+const tileset = document.getElementById('tileset');
+
+const arbitrarybuffer = document.createElement('canvas');
+
+tileset.style.display = 'none';
+
 Promise.all([createMario(), loadLevel(), createGoomba(), createKoopa()]).then(
   ([mario, environment, goomba, koopa]) => {
     const camera = new Camera();
@@ -22,8 +28,8 @@ Promise.all([createMario(), loadLevel(), createGoomba(), createKoopa()]).then(
     // createCollisionLayer(environment, camera);
     calculateTiles(level1, environment);
 
-    environment.entities.add(goomba);
-    environment.entities.add(koopa);
+    // environment.entities.add(goomba);
+    // environment.entities.add(koopa);
     environment.entities.add(mario);
 
     const spriteLayer = createSpriteLayer(environment.entities);
@@ -34,6 +40,12 @@ Promise.all([createMario(), loadLevel(), createGoomba(), createKoopa()]).then(
       environment.comp.draw(context, camera);
 
       environment.update(camera);
+
+      context.drawImage(
+        arbitrarybuffer,
+        -camera.position.x,
+        -camera.position.y
+      );
 
       requestAnimationFrame(update);
     }

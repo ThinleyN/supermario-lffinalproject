@@ -2,7 +2,7 @@ function createGoomba() {
   return loadMario().then(sprites => {
     const goomba = [];
 
-    for (i = 0; i < 2; i++) {
+    for (i = 0; i < 4; i++) {
       goomba[i] = new Entity('goomba');
 
       goomba[i].size.set(16, 16);
@@ -28,6 +28,7 @@ function createGoomba() {
     }
     goomba[0].position.set(150, 200);
     goomba[1].position.set(100, 2);
+    goomba[2].position.set(230, 2);
     return goomba;
   });
 }

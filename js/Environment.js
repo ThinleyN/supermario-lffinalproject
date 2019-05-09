@@ -7,8 +7,9 @@ class Environment {
     this.tiles = new GridMatrix();
     this.gravity = 1;
     this.entityCollider = new EntityCollider(this.entities);
+    this.arbitrary = new ArbitraryBlocks();
 
-    this.tileCollider = new TileCollider(this.tiles);
+    this.tileCollider = new TileCollider(this.tiles, this.arbitrary);
   }
 
   update(camera) {
@@ -20,8 +21,7 @@ class Environment {
         //Camera Movement
         if (element.name === 'mario') {
           if (element.position.x > MAX_LEFT_PIXEL) {
-            camera.position.x = camera.position.x =
-              element.position.x - MAX_LEFT_PIXEL;
+            camera.position.x = element.position.x - MAX_LEFT_PIXEL;
           }
           this.entityCollider.check(element);
         }

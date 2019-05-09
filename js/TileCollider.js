@@ -1,6 +1,7 @@
 class TileCollider {
-  constructor(tileMatrix) {
+  constructor(tileMatrix, arbitrary) {
     this.tiles = new TileResolver(tileMatrix);
+    this.arbitrary = arbitrary;
   }
 
   checkY(entity) {
@@ -38,6 +39,12 @@ class TileCollider {
           if (entity.position.y < match.ybottom) {
             entity.position.y = match.ybottom;
             entity.velocity.y = 0;
+
+            if (match.tile === 'surprise') {
+              this.arbitrary.createBlocks(match);
+            }
+
+            entity.obstruct('top', match);
           }
         }
       }

@@ -3,7 +3,7 @@ function createMario() {
     const mario = [];
     for (i = 0; i < 1; i++) {
       mario[i] = new Entity('mario');
-      mario[i].position.set(500, 10);
+      mario[i].position.set(10, 10);
       mario[i].velocity.set(0, 0);
       mario[i].size.set(14, 16);
       mario[i].jumpReady = false;
@@ -32,7 +32,7 @@ function createMario() {
         engageTime = 0;
       };
 
-      mario[i].obstruct = function obstruct(side) {
+      mario[i].obstruct = function obstruct(side, match) {
         this.jumpReady = true;
       };
 
