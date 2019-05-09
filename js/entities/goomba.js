@@ -1,8 +1,6 @@
 function createGoomba() {
   return loadMario().then(sprites => {
     const goomba = [];
-    var animate = 0;
-    var spriteIndex = 0;
 
     for (i = 0; i < 4; i++) {
       goomba[i] = new Entity('goomba', i);
@@ -10,20 +8,19 @@ function createGoomba() {
       goomba[i].size.set(16, 16);
       goomba[i].draw = function drawgoomba(context) {
         if (this.dead === false) {
-          if (animate % 70 === 0) {
-            spriteIndex++;
+          if (this.animate % 70 === 0) {
+            this.spriteIndex++;
           }
-          animate++;
-          if (spriteIndex > 1) {
-            spriteIndex = 0;
+          this.animate++;
+          if (this.spriteIndex > 1) {
+            this.spriteIndex = 0;
           }
-          context.clearRect(0, 0, 64, 64);
-          sprites.draw(`goomba${spriteIndex}`, context, 0, 0);
         }
         if (this.dead === true) {
-          context.clearRect(0, 0, 64, 64);
-          sprites.draw('goombadead', context, 0, 0);
+          this.spriteIndex = 2;
         }
+        context.clearRect(0, 0, 64, 64);
+        sprites.draw(`goomba${this.spriteIndex}`, context, 0, 0);
       };
 
       goomba[i].obstruct = function obstruct(side) {

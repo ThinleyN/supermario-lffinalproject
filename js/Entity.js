@@ -8,5 +8,7 @@ class Entity {
     this.name = name;
     this.index = index;
     this.dead = false;
+    this.spriteIndex = 0;
+    this.animate = 0;
   }
 }

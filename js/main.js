@@ -29,7 +29,7 @@ Promise.all([createMario(), loadLevel(), createGoomba(), createKoopa()]).then(
     calculateTiles(level1, environment);
 
     environment.entities.add(goomba);
-    // environment.entities.add(koopa);
+    environment.entities.add(koopa);
     environment.entities.add(mario);
 
     const spriteLayer = createSpriteLayer(environment.entities);

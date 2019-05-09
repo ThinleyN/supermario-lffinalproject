@@ -18,7 +18,7 @@ function loadBackground() {
 
 function loadMario() {
   return loadImage('img/characters.gif').then(image => {
-    const sprites = new SpriteSheet(image, 16, 20);
+    const sprites = new SpriteSheet(image, 16, 24);
     sprites.define('idle', 277, 44, 12, 16);
     sprites.define('run0', 289, 44, 15, 16);
     sprites.define('run1', 304, 44, 15, 16);
@@ -28,8 +28,12 @@ function loadMario() {
     sprites.define('backrun2', 176, 44, 15, 16);
     sprites.define('goomba0', 296, 187, 16, 16);
     sprites.define('goomba1', 315, 187, 16, 16);
-    sprites.define('goombadead', 278, 187, 16, 16);
-    sprites.define('koopa', 296, 207, 16, 24);
+    sprites.define('goomba2', 278, 187, 16, 16);
+    sprites.define('koopa0', 296, 207, 16, 22);
+    sprites.define('koopa1', 312, 207, 16, 22);
+    sprites.define('koopa2', 203, 207, 16, 22);
+    sprites.define('koopa3', 185, 207, 16, 22);
+    sprites.define('koopa4', 144, 207, 16, 22);
     return sprites;
   });
 }

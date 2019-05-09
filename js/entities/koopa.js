@@ -7,10 +7,36 @@ function createKoopa() {
     for (i = 0; i < 2; i++) {
       koopa[i] = new Entity('koopa');
       koopa[i].size.set(16, 24);
+      koopa[i].index = i;
 
       koopa[i].draw = function drawkoopa(context) {
+        //right moving animation
+        if (this.dead === false && this.velocity.x > 0) {
+          if (this.animate % 70 === 0) {
+            this.spriteIndex++;
+          }
+          this.animate++;
+          if (this.spriteIndex > 1) {
+            this.spriteIndex = 0;
+          }
+        }
+
+        //left moving animation
+        if (this.dead === false && this.velocity.x < 0) {
+          if (this.animate % 70 === 0) {
+            this.spriteIndex++;
+          }
+          this.animate++;
+          if (this.spriteIndex > 3) {
+            this.spriteIndex = 2;
+          }
+        }
+
+        if (this.dead === true) {
+          this.spriteIndex = 4;
+        }
         context.clearRect(0, 0, 64, 64);
-        sprites.draw('koopa', context, 0, 0);
+        sprites.draw(`koopa${this.spriteIndex}`, context, 0, 0);
       };
 
       koopa[i].obstruct = function obstruct(side) {
@@ -20,16 +46,22 @@ function createKoopa() {
       };
 
       koopa[i].update = function updatekoopa() {
-        this.velocity.x += this.speed;
-        if (this.velocity.x > ENEMY_TOPSPEED) {
-          this.velocity.x = ENEMY_TOPSPEED;
-        } else if (this.velocity.x < -ENEMY_TOPSPEED) {
-          this.velocity.x = -ENEMY_TOPSPEED;
+        if (this.dead === false) {
+          this.velocity.x += this.speed;
+
+          if (this.velocity.x > ENEMY_TOPSPEED) {
+            this.velocity.x = ENEMY_TOPSPEED;
+          } else if (this.velocity.x < -ENEMY_TOPSPEED) {
+            this.velocity.x = -ENEMY_TOPSPEED;
+          }
+        } else {
+          this.velocity.x = 0;
         }
       };
     }
-    koopa[0].position.set(300, 200);
+    koopa[0].position.set(340, 200);
     koopa[1].position.set(210, 30);
+
     return koopa;
   });
 }
