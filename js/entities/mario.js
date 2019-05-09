@@ -12,10 +12,34 @@ function createMario() {
       var upvelo = 1.7;
       var engageTime = 0;
       var speed = 2;
+      var animate = 0;
+      var index = 0;
 
       mario[i].draw = function drawMario(context) {
         context.clearRect(0, 0, 64, 64);
-        sprites.draw('idle', context, 0, 0);
+        if (this.velocity.x === 0) {
+          sprites.draw('idle', context, 0, 0);
+        }
+
+        animate++;
+        if (this.velocity.x > 0) {
+          if (animate % 10 === 0) {
+            index++;
+            if (index > 2) {
+              index = 0;
+            }
+          }
+          sprites.draw(`run${index}`, context, 0, 0);
+        }
+        if (this.velocity.x < 0) {
+          if (animate % 10 === 0) {
+            index++;
+            if (index > 2) {
+              index = 0;
+            }
+          }
+          sprites.draw(`backrun${index}`, context, 0, 0);
+        }
       };
 
       mario[i].walk = function walkMario(dir) {
