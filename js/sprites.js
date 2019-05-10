@@ -12,6 +12,8 @@ function loadBackground() {
     sprites.defineTile('pipeBodyLeft', 0, 9);
     sprites.defineTile('pipeBodyRight', 1, 9);
     sprites.defineTile('cube', 0, 1);
+    sprites.defineTile('flaghead', 16, 8);
+    sprites.defineTile('flagbody', 16, 9);
     return sprites;
   });
 }
@@ -26,6 +28,7 @@ function loadMario() {
     sprites.define('backrun0', 208, 44, 15, 16);
     sprites.define('backrun1', 192, 44, 15, 16);
     sprites.define('backrun2', 176, 44, 15, 16);
+    sprites.define('dead', 484, 44, 15, 16);
     sprites.define('goomba0', 296, 187, 16, 16);
     sprites.define('goomba1', 315, 187, 16, 16);
     sprites.define('goomba2', 278, 187, 16, 16);

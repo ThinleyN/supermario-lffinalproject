@@ -2,16 +2,16 @@ function setupKeyboard(mario) {
   const input = new Keyboard();
   input.addMapping(32, keyState => {
     if (keyState) {
-      mario[0].jump();
+      mario.jump();
     } else {
-      mario[0].jumpStop();
+      mario.jumpStop();
     }
   });
   input.addMapping(39, keyState => {
-    mario[0].walk(keyState);
+    mario.walk(keyState);
   });
   input.addMapping(37, keyState => {
-    mario[0].walk(-keyState);
+    mario.walk(-keyState);
   });
   input.listenTo(window);
 

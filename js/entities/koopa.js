@@ -4,7 +4,7 @@ function createKoopa() {
   return loadMario().then(sprites => {
     const koopa = [];
 
-    for (i = 0; i < 2; i++) {
+    for (i = 0; i < 4; i++) {
       koopa[i] = new Entity('koopa');
       koopa[i].size.set(16, 24);
       koopa[i].index = i;
@@ -61,6 +61,8 @@ function createKoopa() {
     }
     koopa[0].position.set(340, 200);
     koopa[1].position.set(210, 30);
+    koopa[2].position.set(500, 5);
+    koopa[3].position.set(700, 55);
 
     return koopa;
   });

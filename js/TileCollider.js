@@ -13,10 +13,6 @@ class TileCollider {
     );
 
     matches.forEach(match => {
-      // console.log(matches);
-      // if (match.tile !== 'ground') {
-      //   return;
-      // }
       if (entity.name === 'mario') {
         if (match.tile === 'coin') {
           this.arbitrary.createBlocks(match);
@@ -73,7 +69,9 @@ class TileCollider {
         match.tile === 'pipeTopRight' ||
         match.tile === 'pipeBodyLeft' ||
         match.tile === 'pipeBodyRight' ||
-        match.tile === 'cube'
+        match.tile === 'cube' ||
+        match.tile === 'flaghead' ||
+        match.tile === 'flagbody'
       ) {
         if (entity.velocity.x > 0) {
           if (entity.position.x + entity.size.x > match.xleft) {
@@ -90,6 +88,9 @@ class TileCollider {
             entity.obstruct('right');
           }
         }
+        // (match.tile === 'flaghead' || match.tile === 'flagbody'){
+
+        // }
       }
     });
   }

@@ -15,6 +15,7 @@ class EntityCollider {
             Math.abs(mario.position.x - element.position.x) < element.size.x &&
             Math.abs(mario.position.y - element.position.y) < element.size.y
           ) {
+            //goomba kill collision
             if (
               mario.position.y + mario.size.y > element.position.y &&
               mario.position.y + mario.size.y <
@@ -56,12 +57,8 @@ class EntityCollider {
               }, 2000);
             } else {
               console.log('myniggaddead', element.name);
-              console.log(mario.position.y + mario.size.y, element.position.y);
-              console.log(
-                mario.position.y + mario.size.y,
-                element.position.y + element.size.y
-              );
-              window.cancelAnimationFrame();
+              // mario.position.y = mario.position.y + 50;
+              mario.dead = true;
             }
           }
         }
