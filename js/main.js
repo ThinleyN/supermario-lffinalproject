@@ -1,7 +1,5 @@
 const canvas = document.getElementById('screen');
 const context = canvas.getContext('2d');
-const mainAudio = document.getElementById('main');
-
 const tileset = document.getElementById('tileset');
 const sounds = getSounds();
 
@@ -53,26 +51,7 @@ class Game {
 
         environment.arbitrary.drawBlocks(context, camera);
 
-        if (mario.dead === true) {
-          sounds.die.play();
-          cancelAnimationFrame(animate);
-          mainAudio.pause();
-          setTimeout(function() {
-            life--;
-            if (life < 0) {
-              return gameOverScreen();
-            }
-            let game = new Game();
-            game.init();
-          }, 3000);
-        }
-
-        if (gameover === 1) {
-          console.log('runn');
-          mainAudio.pause();
-          cancelAnimationFrame(animate);
-          console.log(gameover);
-        }
+        gameStatusCheck(mario, animate);
       }
       update();
     });
