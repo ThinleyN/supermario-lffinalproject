@@ -9,6 +9,13 @@
   </head>
   <body>
     <img src="./img/tileset.png" alt="tileset" id="tileset" />
+    <img src="./img/gameover.png" alt="gameover" id="gameover" />
+    <audio src="./sounds/mainmusic.mp3" id="main"></audio>
+    <audio src="./sounds/smb_bump.wav" id="bump"></audio>
+    <audio src="./sounds/smb_coin.wav" id="coin"></audio>
+    <audio src="./sounds/smb_flagpole.wav" id="flagpole"></audio>
+    <audio src="./sounds/smb_jump-small.wav" id="jump"></audio>
+    <audio src="./sounds/smb_stomp.wav" id="stomp"></audio>
     <canvas id="screen" width="800" height="600"> </canvas>
 
     <script type="text/javascript" src="js/SpriteSheet.js"></script>
@@ -34,6 +41,12 @@
     <script type="text/javascript" src="js/main.js"></script>
 
     <script>
+      function gameOverScreen() {
+        context.clearRect(0, 0, 1000, 500);
+        let gameover = document.getElementById('gameover');
+        context.drawImage(gameover, 0, 0, 800, 500);
+      }
+      let life = 1;
       let game = new Game();
       game.init();
     </script>

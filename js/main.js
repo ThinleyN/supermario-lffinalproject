@@ -1,23 +1,24 @@
 const canvas = document.getElementById('screen');
 const context = canvas.getContext('2d');
+const mainAudio = document.getElementById('main');
 
 const tileset = document.getElementById('tileset');
 
-const arbitrarybuffer = document.createElement('canvas');
-
 class Game {
   constructor() {
-    this.gameover = false;
+    this.arbitraryState = 0;
   }
-
   init() {
     Promise.all([
       createMario(),
       loadLevel(),
       createGoomba(),
-      createKoopa()
-    ]).then(([mario, environment, goomba, koopa]) => {
+      createKoopa(),
+      getSounds()
+    ]).then(([mario, environment, goomba, koopa, sounds]) => {
       const camera = new Camera();
+
+      sounds.mainMusic.currentTime = 0.0;
 
       window.camera = camera;
       ['mousedown'].forEach(eventName => {
@@ -38,7 +39,6 @@ class Game {
       environment.entities.add(goomba);
       environment.entities.add(koopa);
       environment.entities.add([mario]);
-      console.log(environment.entities);
 
       const spriteLayer = createSpriteLayer(environment.entities);
 
@@ -47,17 +47,33 @@ class Game {
       const inputkeyboard = setupKeyboard(mario);
 
       function update() {
+        const animate = requestAnimationFrame(update);
         environment.comp.draw(context, camera);
-
         environment.update(camera);
 
-        context.drawImage(
-          arbitrarybuffer,
-          -camera.position.x,
-          -camera.position.y
-        );
+        const playPromise = sounds.mainMusic.play();
+        if (playPromise !== null) {
+          playPromise.catch(() => {
+            return;
+          });
+        }
 
-        requestAnimationFrame(update);
+        environment.arbitrary.drawBlocks(context, camera);
+
+        if (mario.dead === true) {
+          cancelAnimationFrame(animate);
+
+          mainAudio.pause();
+
+          setTimeout(function() {
+            life--;
+            if (life < 0) {
+              return gameOverScreen();
+            }
+            let game = new Game();
+            game.init();
+          }, 2000);
+        }
       }
       update();
     });

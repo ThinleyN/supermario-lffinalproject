@@ -1,9 +1,9 @@
 function createMario() {
   return loadMario().then(sprites => {
-    var duration = 0.5;
-    var upvelo = 1.7;
-    var engageTime = 0;
-    var speed = 2;
+    let duration = 0.5;
+    let upvelo = 1.7;
+    let engageTime = 0;
+    let speed = 2;
 
     const mario = new Entity('mario');
     mario.position.set(23, 10);

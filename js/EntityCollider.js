@@ -28,12 +28,7 @@ class EntityCollider {
               }, 2000);
             } else {
               console.log('myniggaddead', element.name);
-              console.log(mario.position.y + mario.size.y, element.position.y);
-              console.log(
-                mario.position.y + mario.size.y,
-                element.position.y + element.size.y
-              );
-              window.cancelAnimationFrame();
+              mario.dead = true;
             }
           }
         }
@@ -57,7 +52,6 @@ class EntityCollider {
               }, 2000);
             } else {
               console.log('myniggaddead', element.name);
-              // mario.position.y = mario.position.y + 50;
               mario.dead = true;
             }
           }

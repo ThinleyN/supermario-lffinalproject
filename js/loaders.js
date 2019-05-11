@@ -26,6 +26,15 @@ function loadLevel() {
   });
 }
 
+function getSounds() {
+  const mainMusic = document.getElementById('main');
+  const jumpSound = document.getElementById('jump');
+
+  const sounds = { mainMusic: mainMusic, jump: jumpSound };
+
+  return sounds;
+}
+
 function calculateTiles(level1, environment) {
   level1.background.forEach(background => {
     background.ranges.forEach(([x1, x2, y1, y2]) => {

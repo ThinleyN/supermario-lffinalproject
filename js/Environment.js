@@ -1,7 +1,7 @@
 const MAX_LEFT_PIXEL = 400;
 
 class Environment {
-  constructor() {
+  constructor(arbitraryState) {
     this.comp = new Compositor();
     this.entities = new Set();
     this.tiles = new GridMatrix();
