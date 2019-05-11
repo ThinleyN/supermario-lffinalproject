@@ -62,6 +62,7 @@
           dash.style.display = 'block';
           context.clearRect(0, 0, 1000, 500);
         }, 3000);
+        life = 2;
       }
       function start() {
         let dash = document.getElementById('dashboard');
@@ -70,7 +71,7 @@
         let game = new Game();
         game.init();
       }
-      let life = 1;
+      let life = 2;
       let gameover = 0;
     </script>
   </body>
