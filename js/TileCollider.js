@@ -43,6 +43,9 @@ class TileCollider {
 
             if (match.tile === 'surprise') {
               this.arbitrary.createBlocks(match);
+              sounds.coin.pause();
+              sounds.coin.currentTime = 0.0;
+              sounds.coin.play();
             }
 
             entity.obstruct('top', match);

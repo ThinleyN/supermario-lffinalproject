@@ -3,6 +3,7 @@ const context = canvas.getContext('2d');
 const mainAudio = document.getElementById('main');
 
 const tileset = document.getElementById('tileset');
+const sounds = getSounds();
 
 class Game {
   constructor() {
@@ -13,25 +14,15 @@ class Game {
       createMario(),
       loadLevel(),
       createGoomba(),
-      createKoopa(),
-      getSounds()
-    ]).then(([mario, environment, goomba, koopa, sounds]) => {
+      createKoopa()
+    ]).then(([mario, environment, goomba, koopa]) => {
       const camera = new Camera();
 
       sounds.mainMusic.currentTime = 0.0;
 
       window.camera = camera;
-      ['mousedown'].forEach(eventName => {
-        canvas.addEventListener(eventName, event => {
-          if (event.buttons === 1) {
-            mario.velocity.set(0, 0);
-            mario.position.set(
-              event.offsetX + camera.position.x,
-              event.offsetY + camera.position.y
-            );
-          }
-        });
-      });
+
+      debug(mario);
 
       // createCollisionLayer(environment, camera);
       calculateTiles(level1, environment);
@@ -44,7 +35,7 @@ class Game {
 
       environment.comp.layers.push(spriteLayer);
 
-      const inputkeyboard = setupKeyboard(mario);
+      const inputkeyboard = setupKeyboard(mario, sounds);
 
       function update() {
         const animate = requestAnimationFrame(update);
@@ -62,9 +53,7 @@ class Game {
 
         if (mario.dead === true) {
           cancelAnimationFrame(animate);
-
           mainAudio.pause();
-
           setTimeout(function() {
             life--;
             if (life < 0) {
@@ -72,7 +61,7 @@ class Game {
             }
             let game = new Game();
             game.init();
-          }, 2000);
+          }, 3000);
         }
       }
       update();

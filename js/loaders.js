@@ -29,8 +29,17 @@ function loadLevel() {
 function getSounds() {
   const mainMusic = document.getElementById('main');
   const jumpSound = document.getElementById('jump');
+  const stompSound = document.getElementById('stomp');
+  const marioDie = document.getElementById('die');
+  const coin = document.getElementById('coin');
 
-  const sounds = { mainMusic: mainMusic, jump: jumpSound };
+  const sounds = {
+    mainMusic: mainMusic,
+    jump: jumpSound,
+    stomp: stompSound,
+    die: marioDie,
+    coin: coin
+  };
 
   return sounds;
 }

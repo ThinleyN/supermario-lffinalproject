@@ -23,12 +23,14 @@ class EntityCollider {
             ) {
               console.log('momma forgive me', element.name);
               element.dead = true;
+              sounds.stomp.play();
               setTimeout(function() {
                 delete entity[element.index];
-              }, 2000);
+              }, 3000);
             } else {
               console.log('myniggaddead', element.name);
               mario.dead = true;
+              sounds.die.play();
             }
           }
         }
@@ -45,14 +47,16 @@ class EntityCollider {
                 element.position.y + element.size.y
             ) {
               console.log('momma forgive me', element.name);
+              sounds.stomp.play();
               element.dead = true;
               setTimeout(function() {
                 delete entity[element.index];
                 console.log(entity);
-              }, 2000);
+              }, 3000);
             } else {
               console.log('myniggaddead', element.name);
               mario.dead = true;
+              sounds.die.play();
             }
           }
         }
