@@ -6,6 +6,9 @@ class EntityCollider {
   check(mario) {
     this.entities.forEach(entity => {
       entity.forEach(element => {
+        if (mario.position.y > 460) {
+          mario.dead = true;
+        }
         if (element.name === 'mario') {
           return;
         }
@@ -33,7 +36,6 @@ class EntityCollider {
             } else {
               console.log('myniggaddead', element.name);
               mario.dead = true;
-              sounds.die.play();
             }
           }
         }
@@ -59,7 +61,6 @@ class EntityCollider {
             } else {
               console.log('myniggaddead', element.name);
               mario.dead = true;
-              sounds.die.play();
             }
           }
         }

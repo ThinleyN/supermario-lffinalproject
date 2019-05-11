@@ -54,6 +54,7 @@ class Game {
         environment.arbitrary.drawBlocks(context, camera);
 
         if (mario.dead === true) {
+          sounds.die.play();
           cancelAnimationFrame(animate);
           mainAudio.pause();
           setTimeout(function() {

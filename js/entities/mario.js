@@ -38,9 +38,6 @@ function createMario() {
           sprites.draw(`backrun${this.spriteIndex}`, context, 0, 0);
         }
       }
-      if (this.dead === true) {
-        sprites.draw('dead', context, 0, 0);
-      }
     };
 
     mario.walk = function walkMario(dir, run) {
