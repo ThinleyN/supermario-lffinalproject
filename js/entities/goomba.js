@@ -8,7 +8,7 @@ function createGoomba() {
       goomba[i].size.set(16, 16);
       goomba[i].draw = function drawgoomba(context) {
         if (this.dead === false) {
-          if (this.animate % 70 === 0) {
+          if (this.animate % 30 === 0) {
             this.spriteIndex++;
           }
           this.animate++;

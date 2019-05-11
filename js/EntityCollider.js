@@ -10,7 +10,10 @@ class EntityCollider {
           return;
         }
         //goomba collision check
-        if (element.name === 'goomba' && element.dead === false) {
+        if (
+          (element.name === 'goomba' && element.dead === false) ||
+          (element.name === 'bloopers' && element.dead === false)
+        ) {
           if (
             Math.abs(mario.position.x - element.position.x) < element.size.x &&
             Math.abs(mario.position.y - element.position.y) < element.size.y

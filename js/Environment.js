@@ -20,6 +20,7 @@ class Environment {
 
         if (this.tileCollider.poleCheck(element) === true) {
           this.gravity = 0.09;
+          gameover = 1;
         }
 
         //Camera Movement

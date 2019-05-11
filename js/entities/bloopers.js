@@ -1,18 +1,15 @@
-const ENEMY_TOPSPEED = 0.6;
-
-function createKoopa() {
+function createBloopers() {
   return loadMario().then(sprites => {
-    const koopa = [];
+    const bloopers = [];
 
-    for (i = 0; i < 4; i++) {
-      koopa[i] = new Entity('koopa');
-      koopa[i].size.set(16, 24);
-      koopa[i].index = i;
+    for (i = 0; i < 2; i++) {
+      bloopers[i] = new Entity('bloopers', i);
 
-      koopa[i].draw = function drawkoopa(context) {
+      bloopers[i].size.set(16, 16);
+      bloopers[i].draw = function drawgoomba(context) {
         //right moving animation
         if (this.dead === false && this.velocity.x > 0) {
-          if (this.animate % 30 === 0) {
+          if (this.animate % 70 === 0) {
             this.spriteIndex++;
           }
           this.animate++;
@@ -23,7 +20,7 @@ function createKoopa() {
 
         //left moving animation
         if (this.dead === false && this.velocity.x < 0) {
-          if (this.animate % 70 === 0) {
+          if (this.animate % 30 === 0) {
             this.spriteIndex++;
           }
           this.animate++;
@@ -36,19 +33,18 @@ function createKoopa() {
           this.spriteIndex = 4;
         }
         context.clearRect(0, 0, 64, 64);
-        sprites.draw(`koopa${this.spriteIndex}`, context, 0, 0);
+        sprites.draw(`bloopers${this.spriteIndex}`, context, 0, 0);
       };
 
-      koopa[i].obstruct = function obstruct(side) {
+      bloopers[i].obstruct = function obstruct(side) {
         if (side === 'left' || side === 'right') {
           this.speed = -this.speed;
         }
       };
 
-      koopa[i].update = function updatekoopa() {
+      bloopers[i].update = function updategoomba() {
         if (this.dead === false) {
           this.velocity.x += this.speed;
-
           if (this.velocity.x > ENEMY_TOPSPEED) {
             this.velocity.x = ENEMY_TOPSPEED;
           } else if (this.velocity.x < -ENEMY_TOPSPEED) {
@@ -59,11 +55,9 @@ function createKoopa() {
         }
       };
     }
-    koopa[0].position.set(340, 200);
-    koopa[1].position.set(210, 30);
-    koopa[2].position.set(500, 5);
-    koopa[3].position.set(700, 55);
+    bloopers[0].position.set(750, 200);
+    bloopers[1].position.set(800, 2);
 
-    return koopa;
+    return bloopers;
   });
 }

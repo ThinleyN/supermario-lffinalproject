@@ -14,8 +14,9 @@ class Game {
       createMario(),
       loadLevel(),
       createGoomba(),
-      createKoopa()
-    ]).then(([mario, environment, goomba, koopa]) => {
+      createKoopa(),
+      createBloopers()
+    ]).then(([mario, environment, goomba, koopa, bloopers]) => {
       const camera = new Camera();
 
       sounds.mainMusic.currentTime = 0.0;
@@ -30,6 +31,7 @@ class Game {
       environment.entities.add(goomba);
       environment.entities.add(koopa);
       environment.entities.add([mario]);
+      environment.entities.add(bloopers);
 
       const spriteLayer = createSpriteLayer(environment.entities);
 

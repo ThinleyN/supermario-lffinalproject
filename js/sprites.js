@@ -37,6 +37,11 @@ function loadMario() {
     sprites.define('koopa2', 203, 207, 16, 22);
     sprites.define('koopa3', 185, 207, 16, 22);
     sprites.define('koopa4', 144, 207, 16, 22);
+    sprites.define('bloopers0', 295, 314, 16, 16);
+    sprites.define('bloopers1', 314, 314, 16, 16);
+    sprites.define('bloopers2', 200, 314, 16, 16);
+    sprites.define('bloopers3', 180, 314, 16, 16);
+    sprites.define('bloopers4', 218, 314, 16, 16);
     return sprites;
   });
 }
