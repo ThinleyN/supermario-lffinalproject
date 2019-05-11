@@ -6,12 +6,36 @@ class ArbitraryBlocks {
   }
   createBlocks(match) {
     if (match.tile === 'surprise') {
-      this.blockArray.push({ x: match.xleft, y: match.ytop });
+      const { length } = this.blockArray;
+      const found = this.blockArray.some(
+        element => (element.x === match.xleft) & (element.y === match.ytop)
+      );
+      if (!found) {
+        this.blockArray.push({ x: match.xleft, y: match.ytop });
+        sounds.coin.pause();
+        sounds.coin.currentTime = 0.0;
+        sounds.coin.play();
+      } else {
+        sounds.bump.pause();
+        sounds.bump.currentTime = 0.0;
+        sounds.bump.play();
+      }
     }
+    console.log(this.blockArray);
 
     if (match.tile === 'coin') {
-      this.skyArray.push({ x: match.xleft, y: match.ytop });
+      const { length } = this.skyArray;
+      const found = this.skyArray.some(
+        element => (element.x === match.xleft) & (element.y === match.ytop)
+      );
+      if (!found) {
+        this.skyArray.push({ x: match.xleft, y: match.ytop });
+        sounds.coin.pause();
+        sounds.coin.currentTime = 0.0;
+        sounds.coin.play();
+      }
     }
+    console.log(this.skyArray);
   }
 
   drawBlocks(context, camera) {

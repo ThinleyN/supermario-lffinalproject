@@ -18,6 +18,10 @@ class Environment {
         element.position.x += element.velocity.x;
         this.tileCollider.checkX(element);
 
+        if (this.tileCollider.poleCheck(element) === true) {
+          this.gravity = 0.09;
+        }
+
         //Camera Movement
         if (element.name === 'mario') {
           if (element.position.x > MAX_LEFT_PIXEL) {

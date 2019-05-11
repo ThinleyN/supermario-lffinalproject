@@ -11,3 +11,20 @@ img {
 body {
   overflow: hidden;
 }
+
+.dashboard {
+  display: block;
+  width: 1000px;
+  margin: auto;
+  position: relative;
+}
+
+a {
+  font-family: 'Super Mario Bros. NES Regular';
+  position: absolute;
+  bottom: 180px;
+  left: 560px;
+  font-size: 50px;
+  text-decoration: none;
+  color: white;
+}

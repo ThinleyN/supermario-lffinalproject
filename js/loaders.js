@@ -32,13 +32,17 @@ function getSounds() {
   const stompSound = document.getElementById('stomp');
   const marioDie = document.getElementById('die');
   const coin = document.getElementById('coin');
+  const bump = document.getElementById('bump');
+  const pole = document.getElementById('flagpole');
 
   const sounds = {
     mainMusic: mainMusic,
     jump: jumpSound,
     stomp: stompSound,
     die: marioDie,
-    coin: coin
+    coin: coin,
+    bump: bump,
+    pole: pole
   };
 
   return sounds;

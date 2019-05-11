@@ -43,9 +43,6 @@ class TileCollider {
 
             if (match.tile === 'surprise') {
               this.arbitrary.createBlocks(match);
-              sounds.coin.pause();
-              sounds.coin.currentTime = 0.0;
-              sounds.coin.play();
             }
 
             entity.obstruct('top', match);
@@ -72,9 +69,7 @@ class TileCollider {
         match.tile === 'pipeTopRight' ||
         match.tile === 'pipeBodyLeft' ||
         match.tile === 'pipeBodyRight' ||
-        match.tile === 'cube' ||
-        match.tile === 'flaghead' ||
-        match.tile === 'flagbody'
+        match.tile === 'cube'
       ) {
         if (entity.velocity.x > 0) {
           if (entity.position.x + entity.size.x > match.xleft) {
@@ -98,13 +93,31 @@ class TileCollider {
     });
   }
 
-  test(entity) {
-    const match = this.tiles.matchByPosition(
+  poleCheck(entity) {
+    let matches = this.tiles.matchByRange(
       entity.position.x,
-      entity.position.y
+      entity.position.x + entity.size.x,
+      entity.position.y,
+      entity.position.y + entity.size.y
     );
-    if (match) {
-      // console.log('matched', match, match.tile);
-    }
+    let found;
+
+    matches.forEach(match => {
+      if (match.tile === 'flaghead' || match.tile === 'flagbody') {
+        if (entity.velocity.x > 0) {
+          if (entity.position.x + entity.size.x > match.xleft) {
+            entity.position.x = match.xleft - entity.size.x;
+            entity.velocity.x = 0;
+
+            entity.position.x = match.xleft + 10;
+            console.log(entity.position.x);
+            sounds.pole.play();
+
+            found = true;
+          }
+        }
+      }
+    });
+    return found;
   }
 }

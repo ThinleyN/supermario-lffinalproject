@@ -10,6 +10,16 @@
   <body>
     <img src="./img/tileset.png" alt="tileset" id="tileset" />
     <img src="./img/gameover.png" alt="gameover" id="gameover" />
+    <div class="mainscreen">
+      <img
+        src="./img/dashboard.png"
+        alt="dashboard"
+        class="dashboard"
+        id="dashboard"
+      />
+      <a href="#" onclick="start()"> Start</a>
+    </div>
+
     <audio src="./sounds/mainmusic.mp3" id="main"></audio>
     <audio src="./sounds/smb_bump.wav" id="bump"></audio>
     <audio src="./sounds/smb_coin.wav" id="coin"></audio>
@@ -47,10 +57,21 @@
         context.clearRect(0, 0, 1000, 500);
         let gameover = document.getElementById('gameover');
         context.drawImage(gameover, 0, 0, 800, 500);
+        setTimeout(() => {
+          let dash = document.getElementById('dashboard');
+          dash.style.display = 'block';
+          context.clearRect(0, 0, 1000, 500);
+        }, 3000);
+      }
+      function start() {
+        let dash = document.getElementById('dashboard');
+        console.log(dash);
+        dash.style.display = 'none';
+        let game = new Game();
+        game.init();
       }
       let life = 1;
-      let game = new Game();
-      game.init();
+      let gameover = 0;
     </script>
   </body>
 </html>

@@ -63,6 +63,13 @@ class Game {
             game.init();
           }, 3000);
         }
+
+        if (gameover === 1) {
+          console.log('runn');
+          mainAudio.pause();
+          cancelAnimationFrame(animate);
+          console.log(gameover);
+        }
       }
       update();
     });

@@ -6,7 +6,7 @@ function createMario() {
     let speed = 2;
 
     const mario = new Entity('mario');
-    mario.position.set(23, 10);
+    mario.position.set(100, 10);
     mario.velocity.set(0, 0);
     mario.size.set(14, 16);
     mario.jumpReady = false;
