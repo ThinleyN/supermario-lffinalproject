@@ -15,10 +15,8 @@ class ArbitraryBlocks {
         sounds.coin.pause();
         sounds.coin.currentTime = 0.0;
         sounds.coin.play();
-      } else {
-        sounds.bump.pause();
-        sounds.bump.currentTime = 0.0;
-        sounds.bump.play();
+        coin++;
+        totalScore += 100;
       }
     }
     console.log(this.blockArray);
@@ -33,6 +31,8 @@ class ArbitraryBlocks {
         sounds.coin.pause();
         sounds.coin.currentTime = 0.0;
         sounds.coin.play();
+        coin++;
+        totalScore += 100;
       }
     }
     console.log(this.skyArray);

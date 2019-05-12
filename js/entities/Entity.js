@@ -10,5 +10,7 @@ class Entity {
     this.dead = false;
     this.spriteIndex = 0;
     this.animate = 0;
+    this.distaceTravelled = 0;
+    this.initialPosition = new Vector();
   }
 }

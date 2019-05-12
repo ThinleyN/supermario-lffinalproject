@@ -2,7 +2,7 @@ function createBloopers() {
   return loadMario().then(sprites => {
     const bloopers = [];
 
-    for (i = 0; i < 2; i++) {
+    for (i = 0; i < 6; i++) {
       bloopers[i] = new Entity('bloopers', i);
 
       bloopers[i].size.set(16, 16);
@@ -55,8 +55,12 @@ function createBloopers() {
         }
       };
     }
-    bloopers[0].position.set(750, 200);
-    bloopers[1].position.set(800, 2);
+    bloopers[0].position.set(2670, 200);
+    bloopers[1].position.set(2690, 2);
+    bloopers[2].position.set(3000, 2);
+    bloopers[3].position.set(2500, 0);
+    bloopers[4].position.set(886, 0);
+    bloopers[5].position.set(860, 0);
 
     return bloopers;
   });

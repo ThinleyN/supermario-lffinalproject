@@ -13,8 +13,9 @@ class Game {
       loadLevel(),
       createGoomba(),
       createKoopa(),
-      createBloopers()
-    ]).then(([mario, environment, goomba, koopa, bloopers]) => {
+      createBloopers(),
+      createRocket()
+    ]).then(([mario, environment, goomba, koopa, bloopers, rocket]) => {
       const camera = new Camera();
 
       sounds.mainMusic.currentTime = 0.0;
@@ -28,8 +29,9 @@ class Game {
 
       environment.entities.add(goomba);
       environment.entities.add(koopa);
-      environment.entities.add([mario]);
       environment.entities.add(bloopers);
+      environment.entities.add(rocket);
+      environment.entities.add([mario]);
 
       const spriteLayer = createSpriteLayer(environment.entities);
 
@@ -38,6 +40,7 @@ class Game {
       const inputkeyboard = setupKeyboard(mario, sounds);
 
       function update() {
+        context.clearRect(0, 0, 1000, 1000);
         const animate = requestAnimationFrame(update);
         environment.comp.draw(context, camera);
         environment.update(camera);
@@ -51,7 +54,7 @@ class Game {
 
         environment.arbitrary.drawBlocks(context, camera);
 
-        gameStatusCheck(mario, animate);
+        gameStatusCheck(mario, animate, context);
       }
       update();
     });

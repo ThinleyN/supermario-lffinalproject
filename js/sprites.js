@@ -42,6 +42,7 @@ function loadMario() {
     sprites.define('bloopers2', 200, 314, 16, 16);
     sprites.define('bloopers3', 180, 314, 16, 16);
     sprites.define('bloopers4', 218, 314, 16, 16);
+    sprites.define('rocket', 228, 333, 16, 16);
     return sprites;
   });
 }

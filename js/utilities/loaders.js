@@ -34,6 +34,7 @@ function getSounds() {
   const coin = document.getElementById('coin');
   const bump = document.getElementById('bump');
   const pole = document.getElementById('flagpole');
+  const stageClear = document.getElementById('stage_clear');
 
   const sounds = {
     mainMusic: mainMusic,
@@ -42,7 +43,8 @@ function getSounds() {
     die: marioDie,
     coin: coin,
     bump: bump,
-    pole: pole
+    pole: pole,
+    stageClear: stageClear
   };
 
   return sounds;
@@ -58,4 +60,12 @@ function calculateTiles(level1, environment) {
       }
     });
   });
+}
+
+function loadFonts(fontname) {
+  var canvas = document.createElement('canvas');
+  var ctx = canvas.getContext('2d');
+
+  ctx.font = '4px ' + fontname;
+  ctx.fillText('text', 0, 8);
 }

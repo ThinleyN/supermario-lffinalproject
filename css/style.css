@@ -1,6 +1,12 @@
+@font-face {
+  font-family: 'Super Mario Bros. NES Regular';
+  src: local('Super Mario Bros. NES Regular');
+}
+
 canvas {
   transform: scale(1.3);
-  margin-left: 250px;
+  margin-left: 180px;
+  font-family: 'Super Mario Bros. NES Regular';
   margin-top: 100px;
 }
 
@@ -22,7 +28,7 @@ body {
 a {
   font-family: 'Super Mario Bros. NES Regular';
   position: absolute;
-  bottom: 180px;
+  bottom: 120px;
   left: 560px;
   font-size: 50px;
   text-decoration: none;

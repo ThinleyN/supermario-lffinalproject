@@ -12,10 +12,11 @@ class EntityCollider {
         if (element.name === 'mario') {
           return;
         }
-        //goomba collision check
+        //goomba & bloopers collision check
         if (
           (element.name === 'goomba' && element.dead === false) ||
-          (element.name === 'bloopers' && element.dead === false)
+          (element.name === 'bloopers' && element.dead === false) ||
+          (element.name === 'rocket' && element.dead === false)
         ) {
           if (
             Math.abs(mario.position.x - element.position.x) < element.size.x &&
@@ -27,14 +28,16 @@ class EntityCollider {
               mario.position.y + mario.size.y <
                 element.position.y + element.size.y
             ) {
-              console.log('momma forgive me', element.name);
               element.dead = true;
+              totalScore += 300;
               sounds.stomp.play();
+              if (element.name === 'rocket') {
+                element.velocity.y = 0;
+              }
               setTimeout(function() {
                 delete entity[element.index];
               }, 3000);
             } else {
-              console.log('myniggaddead', element.name);
               mario.dead = true;
             }
           }
@@ -51,15 +54,14 @@ class EntityCollider {
               mario.position.y + mario.size.y + 6 <
                 element.position.y + element.size.y
             ) {
-              console.log('momma forgive me', element.name);
               sounds.stomp.play();
+              totalScore += 300;
               element.dead = true;
               setTimeout(function() {
                 delete entity[element.index];
                 console.log(entity);
               }, 3000);
             } else {
-              console.log('myniggaddead', element.name);
               mario.dead = true;
             }
           }

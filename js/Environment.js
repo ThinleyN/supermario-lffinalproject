@@ -33,8 +33,12 @@ class Environment {
 
         element.position.y += element.velocity.y;
         this.tileCollider.checkY(element);
-
-        element.velocity.y += this.gravity;
+        if (element.name !== 'rocket') {
+          element.velocity.y += this.gravity;
+        }
+        if (element.name === 'rocket') {
+          element.velocity.y = 0;
+        }
 
         element.update();
       });
