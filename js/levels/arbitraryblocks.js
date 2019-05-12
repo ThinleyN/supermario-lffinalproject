@@ -16,10 +16,9 @@ class ArbitraryBlocks {
         sounds.coin.currentTime = 0.0;
         sounds.coin.play();
         coin++;
-        totalScore += 100;
+        totalScore += COIN_COLLECT_SCORE;
       }
     }
-    console.log(this.blockArray);
 
     if (match.tile === 'coin') {
       const { length } = this.skyArray;
@@ -32,10 +31,9 @@ class ArbitraryBlocks {
         sounds.coin.currentTime = 0.0;
         sounds.coin.play();
         coin++;
-        totalScore += 100;
+        totalScore += COIN_COLLECT_SCORE;
       }
     }
-    console.log(this.skyArray);
   }
 
   drawBlocks(context, camera) {

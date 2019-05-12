@@ -42,36 +42,3 @@ function createSpriteLayer(entities) {
     });
   };
 }
-
-function createCollisionLayer(environment, camera) {
-  const tileResolver = environment.tileCollider.tiles;
-  const tileSize = tileResolver.tileSize;
-
-  const getByIndexOriginal = tileResolver.getByIndex;
-
-  tileResolver.getByIndex = function getByIndexFake(x, y) {
-    context.strokeStyle = 'blue';
-    context.beginPath();
-    context.rect(
-      x * tileSize - camera.position.x,
-      y * tileSize - camera.position.y,
-      tileSize,
-      tileSize
-    );
-    context.stroke();
-
-    environment.entities.forEach(entity => {
-      context.strokeStyle = 'red';
-      context.beginPath();
-      context.rect(
-        entity.position.x - camera.position.x,
-        entity.position.y - camera.position.y,
-        entity.size.x,
-        entity.size.y
-      );
-      context.stroke();
-    });
-
-    return getByIndexOriginal.call(tileResolver, x, y);
-  };
-}

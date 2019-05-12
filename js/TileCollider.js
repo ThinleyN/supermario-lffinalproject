@@ -86,9 +86,6 @@ class TileCollider {
             entity.obstruct('right');
           }
         }
-        // (match.tile === 'flaghead' || match.tile === 'flagbody'){
-
-        // }
       }
     });
   }
@@ -106,11 +103,6 @@ class TileCollider {
       if (match.tile === 'flaghead' || match.tile === 'flagbody') {
         if (entity.velocity.x > 0) {
           if (entity.position.x + entity.size.x > match.xleft + 20) {
-            // entity.position.x = match.xleft - entity.size.x;
-            // entity.velocity.x = 0;
-
-            // entity.position.x = match.xleft + 10;
-            // console.log(entity.position.x);
             sounds.pole.play();
 
             found = true;

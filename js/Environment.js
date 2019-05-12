@@ -1,5 +1,3 @@
-const MAX_LEFT_PIXEL = 400;
-
 class Environment {
   constructor(arbitraryState) {
     this.comp = new Compositor();

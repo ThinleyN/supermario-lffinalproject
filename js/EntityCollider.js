@@ -6,13 +6,13 @@ class EntityCollider {
   check(mario) {
     this.entities.forEach(entity => {
       entity.forEach(element => {
-        if (mario.position.y > 460) {
+        if (mario.position.y > HIGHEST_Y_POSITION) {
           mario.dead = true;
         }
         if (element.name === 'mario') {
           return;
         }
-        //goomba & bloopers collision check
+        //goomba bloopers & rocket collision check
         if (
           (element.name === 'goomba' && element.dead === false) ||
           (element.name === 'bloopers' && element.dead === false) ||
@@ -22,18 +22,15 @@ class EntityCollider {
             Math.abs(mario.position.x - element.position.x) < element.size.x &&
             Math.abs(mario.position.y - element.position.y) < element.size.y
           ) {
-            //goomba kill collision
+            //goomba bloopers & rocket kill collision
             if (
               mario.position.y + mario.size.y > element.position.y &&
               mario.position.y + mario.size.y <
                 element.position.y + element.size.y
             ) {
               element.dead = true;
-              totalScore += 300;
+              totalScore += ENEMY_KILL_SCORE;
               sounds.stomp.play();
-              if (element.name === 'rocket') {
-                element.velocity.y = 0;
-              }
               setTimeout(function() {
                 delete entity[element.index];
               }, 3000);
@@ -46,20 +43,22 @@ class EntityCollider {
         if (element.name === 'koopa' && element.dead === false) {
           if (
             Math.abs(mario.position.x - element.position.x) <
-              element.size.x - 6 &&
-            Math.abs(mario.position.y - element.position.y) < element.size.y - 6
+              element.size.x - MARIO_KOOPA_PIX_DIFFERENCE &&
+            Math.abs(mario.position.y - element.position.y) <
+              element.size.y - MARIO_KOOPA_PIX_DIFFERENCE
           ) {
+            //koopa kill check
             if (
-              mario.position.y + mario.size.y + 6 > element.position.y &&
-              mario.position.y + mario.size.y + 6 <
+              mario.position.y + mario.size.y + MARIO_KOOPA_PIX_DIFFERENCE >
+                element.position.y &&
+              mario.position.y + mario.size.y + MARIO_KOOPA_PIX_DIFFERENCE <
                 element.position.y + element.size.y
             ) {
               sounds.stomp.play();
-              totalScore += 300;
+              totalScore += ENEMY_KILL_SCORE;
               element.dead = true;
               setTimeout(function() {
                 delete entity[element.index];
-                console.log(entity);
               }, 3000);
             } else {
               mario.dead = true;

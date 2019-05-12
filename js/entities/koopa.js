@@ -1,5 +1,3 @@
-const ENEMY_TOPSPEED = 0.6;
-
 function createKoopa() {
   return loadMario().then(sprites => {
     const koopa = [];
@@ -12,7 +10,7 @@ function createKoopa() {
       koopa[i].draw = function drawkoopa(context) {
         //right moving animation
         if (this.dead === false && this.velocity.x > 0) {
-          if (this.animate % 30 === 0) {
+          if (this.animate % ENTITIES_ANIMATION_SPEED === 0) {
             this.spriteIndex++;
           }
           this.animate++;
@@ -23,7 +21,7 @@ function createKoopa() {
 
         //left moving animation
         if (this.dead === false && this.velocity.x < 0) {
-          if (this.animate % 70 === 0) {
+          if (this.animate % ENTITIES_ANIMATION_SPEED === 0) {
             this.spriteIndex++;
           }
           this.animate++;

@@ -1,7 +1,7 @@
 function gameStatusCheck(mario, animate, context) {
   context.font = '40px Courier New';
   context.fillStyle = 'white';
-  context.fillText('Mario', 50, 40);
+  context.fillText('Score', 50, 40);
   context.fillText(`${totalScore}`, 50, 90);
   context.fillText('Coin', 300, 40);
   context.fillText(`${coin}`, 300, 90);
@@ -9,10 +9,13 @@ function gameStatusCheck(mario, animate, context) {
   context.fillText('1-1', 500, 90);
   context.fillText('Time', 700, 40);
   context.fillText(`${timer}`, 700, 90);
-  context.fillText('Life', 850, 40);
+  context.fillText('Mario', 850, 40);
   context.fillText(`${life}`, 850, 90);
 
-  console.log(mario.position);
+  if (coin === 100) {
+    life++;
+    coin = 0;
+  }
 
   if (mario.dead === true) {
     sounds.die.play();
@@ -31,7 +34,6 @@ function gameStatusCheck(mario, animate, context) {
   }
 
   if (gameover === 1) {
-    console.log('runn');
     sounds.mainMusic.pause();
 
     cancelAnimationFrame(animate);
@@ -39,7 +41,6 @@ function gameStatusCheck(mario, animate, context) {
       sounds.stageClear.play();
       gameOverScreen();
     }, 3000);
-    console.log(gameover);
   }
 
   if (timer === 0) {
@@ -66,12 +67,10 @@ function start() {
   totalScore = 0;
 
   let dash = document.getElementById('dashboard');
-  console.log(dash);
   dash.style.display = 'none';
 
   setInterval(() => {
     timer--;
-    console.log(timer);
   }, 1000);
 
   let game = new Game();

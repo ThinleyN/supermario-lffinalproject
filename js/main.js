@@ -24,7 +24,6 @@ class Game {
 
       debug(mario);
 
-      // createCollisionLayer(environment, camera);
       calculateTiles(level1, environment);
 
       environment.entities.add(goomba);
@@ -43,6 +42,7 @@ class Game {
         context.clearRect(0, 0, 1000, 1000);
         const animate = requestAnimationFrame(update);
         environment.comp.draw(context, camera);
+        environment.arbitrary.drawBlocks(context, camera);
         environment.update(camera);
 
         const playPromise = sounds.mainMusic.play();
@@ -51,8 +51,6 @@ class Game {
             return;
           });
         }
-
-        environment.arbitrary.drawBlocks(context, camera);
 
         gameStatusCheck(mario, animate, context);
       }

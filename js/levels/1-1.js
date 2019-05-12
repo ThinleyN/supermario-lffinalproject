@@ -33,7 +33,7 @@ var level1 = {
     },
     {
       tile: 'coin',
-      ranges: [[15, 17, 23, 24]]
+      ranges: [[20, 21, 15, 16]]
     },
     {
       tile: 'cloud',
