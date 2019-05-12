@@ -7,8 +7,10 @@ function gameStatusCheck(mario, animate, context) {
   context.fillText(`${coin}`, 300, 90);
   context.fillText('World', 500, 40);
   context.fillText('1-1', 500, 90);
-  context.fillText('Time', 800, 40);
-  context.fillText(`${timer}`, 800, 90);
+  context.fillText('Time', 700, 40);
+  context.fillText(`${timer}`, 700, 90);
+  context.fillText('Life', 850, 40);
+  context.fillText(`${life}`, 850, 90);
 
   console.log(mario.position);
 
@@ -66,6 +68,11 @@ function start() {
   let dash = document.getElementById('dashboard');
   console.log(dash);
   dash.style.display = 'none';
+
+  setInterval(() => {
+    timer--;
+    console.log(timer);
+  }, 1000);
 
   let game = new Game();
   game.init();
