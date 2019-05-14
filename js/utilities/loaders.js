@@ -18,9 +18,8 @@ function loadLevel() {
     );
     environment.comp.layers.push(backgroundLayer);
 
-    const spriteLayer = createSpriteLayer(environment.entities);
-
-    environment.comp.layers.push(spriteLayer);
+    // const spriteLayer = createSpriteLayer(environment.entities);
+    // environment.comp.layers.push(spriteLayer);
 
     return environment;
   });

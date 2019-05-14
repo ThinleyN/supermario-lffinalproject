@@ -26,10 +26,10 @@ body {
 }
 
 a {
+  left: 44%;
   font-family: 'Super Mario Bros. NES Regular';
   position: absolute;
-  bottom: 120px;
-  left: 560px;
+  top: 56%;
   font-size: 50px;
   text-decoration: none;
   color: white;

@@ -20,9 +20,8 @@ class Game {
 
       sounds.mainMusic.currentTime = 0.0;
 
-      window.camera = camera;
-
       debug(mario);
+      window.yeahh = camera;
 
       calculateTiles(level1, environment);
 
@@ -45,12 +44,13 @@ class Game {
         environment.arbitrary.drawBlocks(context, camera);
         environment.update(camera);
 
-        const playPromise = sounds.mainMusic.play();
-        if (playPromise !== null) {
-          playPromise.catch(() => {
-            return;
-          });
-        }
+        sounds.mainMusic.play();
+        // console.log(playPromise);
+        // if (playPromise !== null) {
+        //   playPromise.catch(() => {
+        //     return;
+        //   });
+        // }
 
         gameStatusCheck(mario, animate, context);
       }
